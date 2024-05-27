@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
 import 'package:flutter_application_1/theme/palette.dart';
 import 'package:flutter_application_1/features/home/view/home_page.dart';
 
@@ -6,23 +7,22 @@ class HomeProfile extends StatefulWidget {
   const HomeProfile({Key? key}) : super(key: key);
 
   @override
-  // ignore: library_private_types_in_public_api
   _HomeProfileState createState() => _HomeProfileState();
 }
 
 class _HomeProfileState extends State<HomeProfile> {
-  int _selectedIndex = 2; // Índice inicial do item selecionado
+  int _selectedIndex = 2;
 
-  // Função chamada ao selecionar um item da barra de navegação
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       if (_selectedIndex == 0) {
-        // Se o índice for 0 (Menu), navegue para HomePage
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => const HomePage()),
         );
+      } else if (_selectedIndex == 1) {
+
       }
     });
   }
@@ -30,14 +30,26 @@ class _HomeProfileState extends State<HomeProfile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 65,
+        backgroundColor: Palette.lightGreen,
+        title: Text('Perfil'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Palette.whiteColor,
+            ),
+            
+            onPressed: () {
+
+            },
+          ),
+        ],
+      ),
       body: Stack(
         children: [
-          // Scaffold com AppBar
-          Scaffold(
-            appBar: AppBar(
-              backgroundColor: Palette.lightGreen,
-            ),
-          ),
+          // Exibição do ícone de perfil com fundo redondo e sombra
           Positioned(
             top: 90.0, // Ajuste a posição conforme necessário
             left: 0,
@@ -62,8 +74,7 @@ class _HomeProfileState extends State<HomeProfile> {
                   child: Icon(
                     Icons.person,
                     size: 70.0, // Ajuste o tamanho do ícone conforme necessário
-                    color: Palette
-                        .lightGreen, // Ajuste a cor do ícone conforme necessário
+                    color: Palette.lightGreen, // Ajuste a cor do ícone conforme necessário
                   ),
                 ),
               ),
@@ -117,10 +128,8 @@ class _HomeProfileState extends State<HomeProfile> {
                     child: const Center(
                       child: Icon(
                         Icons.phone,
-                        size:
-                            30.0, // Ajuste o tamanho do ícone conforme necessário
-                        color: Palette
-                            .lightGreen, // Ajuste a cor do ícone conforme necessário
+                        size: 30.0, // Ajuste o tamanho do ícone conforme necessário
+                        color: Palette.lightGreen, // Ajuste a cor do ícone conforme necessário
                       ),
                     ),
                   ),
@@ -139,10 +148,8 @@ class _HomeProfileState extends State<HomeProfile> {
                     child: const Center(
                       child: Icon(
                         Icons.mail,
-                        size:
-                            30.0, // Ajuste o tamanho do ícone conforme necessário
-                        color: Palette
-                            .lightGreen, // Ajuste a cor do ícone conforme necessário
+                        size: 30.0, // Ajuste o tamanho do ícone conforme necessário
+                        color: Palette.lightGreen, // Ajuste a cor do ícone conforme necessário
                       ),
                     ),
                   ),
@@ -152,24 +159,9 @@ class _HomeProfileState extends State<HomeProfile> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Palette.lightGreen),
-            label: 'Menu',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.article, color: Palette.lightGreen),
-            label: 'Documentos',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person, color: Palette.lightGreen),
-            label: 'Perfil',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Palette.lightGreen,
-        onTap: _onItemTapped,
+      bottomNavigationBar: CustomBottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }

@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
 import 'package:flutter_application_1/features/home/view/home_profile.dart';
+import 'package:flutter_application_1/features/home/view/internship_details.dart';
 import 'package:flutter_application_1/theme/palette.dart';
+import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
+import 'package:flutter_application_1/features/home/view/home_page_company.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -11,33 +14,15 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0; // Índice inicial do item selecionado
+  int _selectedIndex = 0;
 
-  // Lista de itens da barra de navegação
-  static const List<BottomNavigationBarItem> _navItems = [
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home, color: Palette.lightGreen),
-      label: 'Menu',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.article, color: Palette.lightGreen),
-      label: 'Documentos',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.person, color: Palette.lightGreen),
-      label: 'Perfil',
-    ),
-  ];
-
-  // Função chamada ao selecionar um item da barra de navegação
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
       if (_selectedIndex == 2) {
-        // Se o índice for 2 (Perfil), navegue para HomeProfile
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => HomeProfile()),
+          MaterialPageRoute(builder: (context) => const HomeProfile()),
         );
       }
     });
@@ -48,7 +33,21 @@ class _HomePageState extends State<HomePage> {
     final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 65,
         backgroundColor: Palette.lightGreen,
+        title: Text('Bem-Vindo,'),
+        actions: [
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Palette.whiteColor,
+            ),
+            
+            onPressed: () {
+
+            },
+          ),
+        ],
       ),
       body: ListView(
         children: [
@@ -212,11 +211,9 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: _navItems,
-        currentIndex: _selectedIndex,
-        selectedItemColor: Palette.lightGreen,
-        onTap: _onItemTapped,
+      bottomNavigationBar: CustomBottomNav(
+        selectedIndex: _selectedIndex,
+        onItemTapped: _onItemTapped,
       ),
     );
   }
