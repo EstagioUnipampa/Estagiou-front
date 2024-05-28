@@ -161,7 +161,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
                       SizedBox(
                         height: 60,
                         child: ElevatedButton(
-                          onPressed: _register,
+                          onPressed: _isValidated() ? _register : null,
                           style: ElevatedButton.styleFrom(
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(50),
@@ -214,4 +214,15 @@ class _RegisterStudentState extends State<RegisterStudent> {
           }),
     );
   }
+    bool _isValidated() {
+      if (_firstNameController.text.isEmpty ||
+          _lastNameController.text.isEmpty ||
+          _emailController.text.isEmpty ||
+          _passwordController.text.isEmpty) {
+        return false;
+      }
+      return true;
+    
+  }
+  
 }
