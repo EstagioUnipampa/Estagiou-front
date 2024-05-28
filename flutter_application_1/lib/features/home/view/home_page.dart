@@ -42,10 +42,7 @@ class _HomePageState extends State<HomePage> {
               Icons.search,
               color: Palette.whiteColor,
             ),
-            
-            onPressed: () {
-
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -58,10 +55,12 @@ class _HomePageState extends State<HomePage> {
               width: size.width * 0.45,
               margin: const EdgeInsets.only(top: 4, left: 4),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25),
-                  shape: BoxShape.rectangle,
-                  gradient: const LinearGradient(
-                      colors: [Palette.darkGreen, Palette.lightGreen])),
+                borderRadius: BorderRadius.circular(25),
+                shape: BoxShape.rectangle,
+                gradient: const LinearGradient(
+                  colors: [Palette.darkGreen, Palette.lightGreen],
+                ),
+              ),
               child: Stack(
                 children: [
                   Positioned(
@@ -75,28 +74,32 @@ class _HomePageState extends State<HomePage> {
                               .textTheme
                               .bodyMedium!
                               .copyWith(
-                                  color: Palette.whiteColor,
-                                  fontSize: 24,
-                                  fontWeight: FontWeight.bold),
+                                color: Palette.whiteColor,
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
                         ),
                         Text(
                           'Inscrições',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: Palette.whiteColor,
-                                    fontSize: 16,
-                                  ),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium!
+                              .copyWith(
+                                color: Palette.whiteColor,
+                                fontSize: 16,
+                              ),
                         ),
                       ],
                     ),
                   ),
                   Positioned(
-                      bottom: -16,
-                      right: -12,
-                      child: Image.asset(
-                        'assets/confirmed.png',
-                        alignment: Alignment.bottomRight,
-                      ))
+                    bottom: -16,
+                    right: -12,
+                    child: Image.asset(
+                      'assets/confirmed.png',
+                      alignment: Alignment.bottomRight,
+                    ),
+                  )
                 ],
               ),
             ),
@@ -122,8 +125,9 @@ class _HomePageState extends State<HomePage> {
                         width: 20,
                         height: 2,
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
-                            color: Palette.darkGreen),
+                          borderRadius: BorderRadius.circular(50),
+                          color: Palette.darkGreen,
+                        ),
                       );
                     },
                   ),
@@ -146,23 +150,28 @@ class _HomePageState extends State<HomePage> {
                   margin: const EdgeInsets.all(4),
                   height: size.height * 0.1,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Palette.whiteColor,
-                      border: Border.all(width: 1, color: Palette.darkGreen),
-                      boxShadow: const [
-                        BoxShadow(
-                            color: Palette.darkGreen, offset: Offset(1, 1))
-                      ]),
+                    borderRadius: BorderRadius.circular(25),
+                    color: Palette.whiteColor,
+                    border: Border.all(width: 1, color: Palette.darkGreen),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Palette.darkGreen,
+                        offset: Offset(1, 1),
+                      ),
+                    ],
+                  ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Flexible(
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: Palette.lightGreen,
-                              ),
-                              child: Image.asset('assets/logo.png'))),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Palette.lightGreen,
+                          ),
+                          child: Image.asset('assets/logo.png'),
+                        ),
+                      ),
                       8.pw,
                       Column(
                         children: [
@@ -170,9 +179,7 @@ class _HomePageState extends State<HomePage> {
                           Flexible(
                             child: Row(
                               children: [
-                                const Icon(
-                                  Icons.work,
-                                ),
+                                const Icon(Icons.work),
                                 4.pw,
                                 const Text('Engenharia de Software'),
                               ],
@@ -193,9 +200,7 @@ class _HomePageState extends State<HomePage> {
                           Flexible(
                             child: Row(
                               children: [
-                                const Icon(
-                                  Icons.payment,
-                                ),
+                                const Icon(Icons.payment),
                                 4.pw,
                                 const Text('Pagamento em jacaré'),
                               ],
