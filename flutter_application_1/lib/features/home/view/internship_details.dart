@@ -14,18 +14,6 @@ class InternshipDetails extends StatefulWidget {
 class _InternshipDetails extends State<InternshipDetails> {
   int _selectedIndex = 0;
 
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //     if (_selectedIndex == 2) {
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => const HomeProfile()),
-  //       );
-  //     }
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -40,10 +28,7 @@ class _InternshipDetails extends State<InternshipDetails> {
               Icons.search,
               color: Palette.whiteColor,
             ),
-            
-            onPressed: () {
-
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -70,46 +55,37 @@ class _InternshipDetails extends State<InternshipDetails> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: List.generate(1, (index) {
               return Container(
-                padding: const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(7),
                 margin: const EdgeInsets.all(4),
                 child: Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     8.pw,
                     Flexible(
-                      flex: 3,
+                      flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          4.ph,
-                          Row(
-                            children: [
-                              const Icon(Icons.work),
-                              4.pw,
-                              const Text('Nome Empresa'),
-                            ],
+                          Text(
+                            'Nome Empresa',
+                            style: TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
-                          Row(
-                            children: [
-                              const Icon(
-                                Icons.pin_drop,
-                                color: Colors.red,
-                              ),
-                              4.pw,
-                              const Text('Humaitá, Amazonas'),
-                            ],
-                          ),
-                          Row(
-                            children: [
-                              const Icon(Icons.payment),
-                              4.pw,
-                              const Text('Pagamento em jacaré'),
-                            ],
+                          SizedBox(height: 4),
+                          Text(
+                            'Nome da Vaga',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
                     ),
+                    SizedBox(width: 100), // Espaçamento adicional entre o texto e a imagem
                     Flexible(
+                      flex: 1,
                       child: Container(
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(25),
@@ -124,16 +100,145 @@ class _InternshipDetails extends State<InternshipDetails> {
             }),
           ),
           Divider(
-              color: Palette.blueGrey,
-              indent: 20, // Espaço à esquerda do divisor
-              endIndent: 20, // Espaço à direita do divisor
-            )
+            color: Palette.blueGrey,
+            indent: 20, // Espaço à esquerda do divisor
+            endIndent: 20, // Espaço à direita do divisor
+          ),
+          // Adicionando as novas informações aqui
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
+                      ),
+                      child: Icon(Icons.monetization_on, color: Colors.white),
+                    ),
+                    SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Remuneração',
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                        ),
+                        Text(
+                          'R\$740,00/Mês',
+                          style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                SizedBox(height: 10),
+                Row(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(8.0),
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: Colors.green,
+                      ),
+                      child: Icon(Icons.location_on, color: Colors.white),
+                    ),
+                    SizedBox(width: 10),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Localização',
+                          style: TextStyle(color: Colors.grey, fontSize: 14),
+                        ),
+                        Text(
+                          'São Paulo, Brasil',
+                          style: TextStyle(color: Colors.black, fontSize: 16, fontWeight: FontWeight.bold),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            color: Palette.blueGrey,
+            indent: 20, // Espaço à esquerda do divisor
+            endIndent: 20, // Espaço à direita do divisor
+          ),
+          6.ph,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Descrição do estágio',
+                      style: TextStyle(
+                        fontSize: 22, // Defina o tamanho da fonte desejado
+                        fontWeight: FontWeight.bold, // Opcional: Defina o peso da fonte
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                    height: 10), // Espaçamento entre o título e a descrição
+                Container(
+                  padding: const EdgeInsets.all(10.0),
+                  child: const Text(
+                    'Aqui está a descrição detalhada da vaga de estágio. '
+                    'Inclua todas as informações relevantes sobre a vaga, como '
+                    'responsabilidades, requisitos, local de trabalho, horário, '
+                    'benefícios, etc.',
+                    style: TextStyle(
+                        fontSize: 16), // Defina o tamanho da fonte desejado
+                  ),
+                ),
+              ],
+            ),
+          )
         ],
       ),
-      // bottomNavigationBar: CustomBottomNav(
-      //   selectedIndex: _selectedIndex,
-      //   onItemTapped: _onItemTapped,
-      // ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        child: Row(
+          children: [
+            OutlinedButton(
+              onPressed: () {},
+              child: Icon(Icons.bookmark_border, color: Colors.green),
+              style: OutlinedButton.styleFrom(
+                backgroundColor: Colors.grey[300],
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+              ),
+            ),
+            SizedBox(width: 10),
+            Expanded(
+              child: ElevatedButton(
+                onPressed: () {},
+                child: Text('INSCREVA-SE'),
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.green,
+                  onPrimary: Colors.white,
+                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
