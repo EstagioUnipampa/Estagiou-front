@@ -6,6 +6,8 @@ import 'package:flutter_application_1/features/auth/view/bloc/sign_up_bloc/sign_
 import 'package:flutter_application_1/features/auth/view/bloc/sign_up_bloc/sign_up_events.dart';
 import 'package:flutter_application_1/features/auth/view/components/login_text_field.dart';
 import 'package:flutter_application_1/shared/bloc/base_state.dart';
+import 'package:flutter_application_1/shared/utils/feedback_overlay.dart';
+import 'package:flutter_application_1/theme/palette.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
@@ -24,6 +26,11 @@ class _RegisterStudentState extends State<RegisterStudent> {
   final TextEditingController _lastNameController = TextEditingController();
   late SignUpBloc _signUpBloc;
 
+  String? _emailError;
+  String? _passwordError;
+  String? _firstNameError;
+  String? _lastNameError;
+
   @override
   void initState() {
     _signUpBloc = Modular.get<SignUpBloc>();
@@ -39,24 +46,62 @@ class _RegisterStudentState extends State<RegisterStudent> {
     super.dispose();
   }
 
+  bool _validateForm() {
+    bool isValid = true;
+
+    setState(() {
+      _emailError = null;
+      _passwordError = null;
+      _firstNameError = null;
+      _lastNameError = null;
+
+      if (_firstNameController.text.isEmpty) {
+        _firstNameError = 'O campo nome é obrigatório';
+        isValid = false;
+      }
+
+      if (_lastNameController.text.isEmpty) {
+        _lastNameError = 'O campo sobrenome é obrigatório';
+        isValid = false;
+      }
+
+      if (_emailController.text.isEmpty) {
+        _emailError = 'O campo email é obrigatório';
+        isValid = false;
+      } else if (!_emailController.text.contains('@gmail.com')) {
+        _emailError = 'Insira um email válido (@gmail.com)';
+        isValid = false;
+      }
+
+      if (_passwordController.text.isEmpty) {
+        _passwordError = 'O campo senha é obrigatório';
+        isValid = false;
+      } else if (_passwordController.text.length < 6) {
+        _passwordError = 'A senha deve ter pelo menos 6 caracteres';
+        isValid = false;
+      }
+    });
+
+    return isValid;
+  }
+
   void _register() {
-    Aluno alunoDTO = Aluno(
-      address: null,
-      course: null,
-      enrollments: [],
-      enrollmentsEmpty: true,
-      id: '',
-      quantityEnrollments: 0,
-      role: 'USER',
-      email: _emailController.text,
-      name: _firstNameController.text,
-      lastName: _lastNameController.text,
-      password: _passwordController.text,
-    );
-    _signUpBloc.add(
-      OnSignUpEvent(alunoDTO),
-    );
-    // _signUpBloc.add(OnGetAlunosEvent());
+    if (_validateForm()) {
+      Aluno alunoDTO = Aluno(
+        address: null,
+        course: null,
+        enrollments: [],
+        enrollmentsEmpty: true,
+        id: '',
+        quantityEnrollments: 0,
+        role: 'USER',
+        email: _emailController.text,
+        name: _firstNameController.text,
+        lastName: _lastNameController.text,
+        password: _passwordController.text,
+      );
+      _signUpBloc.add(OnSignUpEvent(alunoDTO));
+    }
   }
 
   @override
@@ -82,147 +127,115 @@ class _RegisterStudentState extends State<RegisterStudent> {
         backgroundColor: const Color(0xFF23A331),
       ),
       body: BlocConsumer<SignUpBloc, BaseState>(
-          listener: (context, state) {
-            if (state is ErrorState) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(state.message),
-                  backgroundColor: Colors.red,
-                ),
-              );
-            }
-          },
-          bloc: _signUpBloc,
-          builder: (context, state) {
-            return SingleChildScrollView(
-              child: Container(
-                padding: const EdgeInsets.fromLTRB(28, 10, 28, 0),
-                color: const Color(0xFFFBF6FF),
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(height: 10),
-                      const Text(
-                        'Cadastro',
-                        style: TextStyle(
-                          fontSize: 22,
-                          color: Color(0xFF1A7924),
-                          fontWeight: FontWeight.w500,
-                        ),
+        listener: (context, state) {
+          if (state is ErrorState) {
+            FeedbackOverlay.show(context, FeedbackTypesEnum.error);
+          } else if (state is SuccessState) {
+            FeedbackOverlay.show(context, FeedbackTypesEnum.success);
+          } else if (state is LoadingState) {
+            FeedbackOverlay.show(context, FeedbackTypesEnum.loading);
+          }
+        },
+        bloc: _signUpBloc,
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.fromLTRB(28, 10, 28, 0),
+              color: const Color(0xFFFBF6FF),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 10),
+                    const Text(
+                      'Cadastro',
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Color(0xFF1A7924),
+                        fontWeight: FontWeight.w500,
                       ),
-                      const SizedBox(height: 10),
-                      Text(
-                        'Realize o cadastro da sua conta:',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .copyWith(fontSize: 16),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(
+                      'Realize o cadastro da sua conta:',
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(fontSize: 16),
+                    ),
+                    50.ph,
+                    SizedBox(
+                      height: 75,
+                      child: LoginTextField(
+                        labelText: 'Nome',
+                        controller: _firstNameController,
+                        isPassword: false,
+                        errorText: _firstNameError,
                       ),
-                      50.ph,
-                      SizedBox(
-                        height: 75,
-                        child: LoginTextField(
-                          labelText: 'Nome',
-                          controller: _firstNameController,
-                          isPassword: false,
-                        ),
+                    ),
+                    1.ph,
+                    SizedBox(
+                      height: 75,
+                      child: LoginTextField(
+                        labelText: 'Sobrenome',
+                        controller: _lastNameController,
+                        isPassword: false,
+                        errorText: _lastNameError,
                       ),
-                      1.ph,
-                      SizedBox(
-                        height: 75,
-                        child: LoginTextField(
-                          labelText: 'Sobrenome',
-                          controller: _lastNameController,
-                          isPassword: false,
-                        ),
+                    ),
+                    1.ph,
+                    SizedBox(
+                      height: 75,
+                      child: LoginTextField(
+                        labelText: 'Email',
+                        controller: _emailController,
+                        isPassword: false,
+                        errorText: _emailError,
                       ),
-                      1.ph,
-                      SizedBox(
-                        height: 75,
-                        child: LoginTextField(
-                          labelText: 'Email',
-                          controller: _emailController,
-                          isPassword: false,
-                        ),
+                    ),
+                    1.ph,
+                    SizedBox(
+                      height: 75,
+                      child: LoginTextField(
+                        labelText: 'Senha',
+                        controller: _passwordController,
+                        isPassword: true,
+                        errorText: _passwordError,
                       ),
-                      1.ph,
-                      SizedBox(
-                        height: 75,
-                        child: LoginTextField(
-                          labelText: 'Senha',
-                          controller: _passwordController,
-                          isPassword: true,
-                        ),
-                      ),
-                      1.ph,
-                      SizedBox(
-                        height: 60,
-                        child: ElevatedButton(
-                          onPressed: _isValidated() ? _register : null,
-                          style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(50),
-                            ),
-                            minimumSize: const Size(double.infinity, 50),
-                            backgroundColor: const Color(0xFF23A331),
+                    ),
+                    20.ph,
+                    SizedBox(
+                      width: double.infinity,
+                      child: TextButton(
+                        style: TextButton.styleFrom(
+                          backgroundColor: Palette.lightGreen,
+                          padding: const EdgeInsets.all(24),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(24),
                           ),
-                          child: const Center(
-                            child: Text(
-                              'CADASTRAR',
-                              style: TextStyle(
+                        ),
+                        onPressed: _register,
+                        child: Text(
+                          'Cadastrar',
+                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                                 color: Colors.white,
-                                fontFamily: 'Poppins',
+                                fontSize: 20,
                                 fontWeight: FontWeight.w600,
-                                fontSize: 16,
+                                fontFamily: 'Poppins',
                               ),
-                            ),
-                          ),
                         ),
                       ),
-                      10.ph,
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const AuthStudent()),
-                              );
-                            },
-                            child: Text(
-                              'Já possui conta? Faça login',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                      fontSize: 16,
-                                      color: const Color(0xFF1A7924)),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
+                    ),
+                    20.ph,
+                  ],
                 ),
               ),
-            );
-          }),
+            ),
+          );
+        },
+      ),
     );
   }
-    bool _isValidated() {
-      if (_firstNameController.text.isEmpty ||
-          _lastNameController.text.isEmpty ||
-          _emailController.text.isEmpty ||
-          _passwordController.text.isEmpty) {
-        return false;
-      }
-      return true;
-    
-  }
-  
 }

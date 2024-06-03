@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
-import 'package:flutter_application_1/features/home/view/home_profile.dart';
 import 'package:flutter_application_1/theme/palette.dart';
-import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
 
 class InternshipDetails extends StatefulWidget {
   const InternshipDetails({Key? key}) : super(key: key);
@@ -12,19 +10,17 @@ class InternshipDetails extends StatefulWidget {
 }
 
 class _InternshipDetails extends State<InternshipDetails> {
-  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
         backgroundColor: Palette.lightGreen,
-        title: Text('Detalhes'),
+        title: const Text('Detalhes'),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Palette.whiteColor,
             ),
@@ -61,7 +57,7 @@ class _InternshipDetails extends State<InternshipDetails> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     8.pw,
-                    Flexible(
+                    const Flexible(
                       flex: 2,
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,7 +79,7 @@ class _InternshipDetails extends State<InternshipDetails> {
                         ],
                       ),
                     ),
-                    SizedBox(width: 100), // Espaçamento adicional entre o texto e a imagem
+                    const SizedBox(width: 100), // Espaçamento adicional entre o texto e a imagem
                     Flexible(
                       flex: 1,
                       child: Container(
@@ -99,7 +95,7 @@ class _InternshipDetails extends State<InternshipDetails> {
               );
             }),
           ),
-          Divider(
+          const Divider(
             color: Palette.blueGrey,
             indent: 20, // Espaço à esquerda do divisor
             endIndent: 20, // Espaço à direita do divisor
@@ -113,14 +109,14 @@ class _InternshipDetails extends State<InternshipDetails> {
                   children: [
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.green,
                       ),
-                      child: Icon(Icons.monetization_on, color: Colors.white),
+                      child: const Icon(Icons.monetization_on, color: Colors.white),
                     ),
-                    SizedBox(width: 10),
-                    Column(
+                    const SizedBox(width: 10),
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -135,19 +131,19 @@ class _InternshipDetails extends State<InternshipDetails> {
                     ),
                   ],
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 Row(
                   children: [
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         color: Colors.green,
                       ),
-                      child: Icon(Icons.location_on, color: Colors.white),
+                      child: const Icon(Icons.location_on, color: Colors.white),
                     ),
-                    SizedBox(width: 10),
-                    Column(
+                    const SizedBox(width: 10),
+                    const Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
@@ -165,7 +161,7 @@ class _InternshipDetails extends State<InternshipDetails> {
               ],
             ),
           ),
-          Divider(
+          const Divider(
             color: Palette.blueGrey,
             indent: 20, // Espaço à esquerda do divisor
             endIndent: 20, // Espaço à direita do divisor
@@ -176,10 +172,10 @@ class _InternshipDetails extends State<InternshipDetails> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text(
+                    Text(
                       'Descrição do estágio',
                       style: TextStyle(
                         fontSize: 22, // Defina o tamanho da fonte desejado
@@ -212,28 +208,27 @@ class _InternshipDetails extends State<InternshipDetails> {
           children: [
             OutlinedButton(
               onPressed: () {},
-              child: Icon(Icons.bookmark_border, color: Colors.green),
               style: OutlinedButton.styleFrom(
                 backgroundColor: Colors.grey[300],
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(8.0),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 16.0),
               ),
+              child: const Icon(Icons.bookmark_border, color: Colors.green),
             ),
-            SizedBox(width: 10),
+            const SizedBox(width: 10),
             Expanded(
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text('INSCREVA-SE'),
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.green,
-                  onPrimary: Colors.white,
-                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                  foregroundColor: Colors.white, backgroundColor: Colors.green,
+                  padding: const EdgeInsets.symmetric(vertical: 12.0),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
+                child: const Text('INSCREVA-SE'),
               ),
             ),
           ],
