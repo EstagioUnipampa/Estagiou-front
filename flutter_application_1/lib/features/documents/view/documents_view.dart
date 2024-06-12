@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/theme/palette.dart';
 
 class DocumentsView extends StatefulWidget {
   const DocumentsView({super.key});
@@ -13,6 +14,9 @@ class _DocumentsViewState extends State<DocumentsView> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Documentos'),
+        toolbarHeight: 65,
+        backgroundColor: Palette.lightGreen,
+        
       ),
       body: const Placeholder(),
     );

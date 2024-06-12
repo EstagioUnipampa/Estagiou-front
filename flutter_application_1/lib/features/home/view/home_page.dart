@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
 import 'package:flutter_application_1/theme/palette.dart';
-import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);

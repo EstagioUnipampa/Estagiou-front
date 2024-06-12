@@ -13,7 +13,7 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
   int _selectedIndex = 0;
 
   static const List<String> _routes = [
-    '/home/home',
+    '/home/homePage',
     '/home/documents',
     '/home/registrations',
     '/home/profile',
@@ -30,32 +30,32 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       
-      body: const RouterOutlet(), // Use RouterOutlet to display the current page
+      body: const RouterOutlet(), 
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home, color: Palette.whiteColor),
             label: 'Menu',
-            backgroundColor: Colors.black,
+            backgroundColor: Palette.lightGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'Documentos',
-            backgroundColor: Colors.black,
+            backgroundColor: Palette.lightGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail_rounded),
             label: 'Inscrições',
-            backgroundColor: Colors.black,
+            backgroundColor: Palette.lightGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Perfil',
-            backgroundColor: Colors.black,
+            backgroundColor: Palette.lightGreen,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Palette.whiteColor,
         onTap: _onItemTapped,
       ),
     );

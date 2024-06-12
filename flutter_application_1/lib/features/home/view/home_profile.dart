@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
 import 'package:flutter_application_1/theme/palette.dart';
-import 'package:flutter_application_1/features/home/view/home_page.dart';
 
 class HomeProfile extends StatefulWidget {
   const HomeProfile({Key? key}) : super(key: key);
@@ -11,22 +9,9 @@ class HomeProfile extends StatefulWidget {
 }
 
 class _HomeProfileState extends State<HomeProfile> {
-  int _selectedIndex = 2;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (_selectedIndex == 0) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => const HomePage()),
-        );
-      } else if (_selectedIndex == 1) {}
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 65,
@@ -44,7 +29,11 @@ class _HomeProfileState extends State<HomeProfile> {
       ),
       body: Stack(
         children: [
-          // Exibição do ícone de perfil com fundo redondo e sombra
+          Container(
+            height: size.height * 0.2,
+            decoration: const BoxDecoration(color: Palette.lightGreen),
+          ),
+          Container(height: size.height),
           Positioned(
             top: 90.0, // Ajuste a posição conforme necessário
             left: 0,
