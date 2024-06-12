@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/auth/view/auth_company.dart';
-import 'package:flutter_application_1/features/auth/view/auth_student.dart';
 import 'package:flutter_application_1/theme/palette.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -51,10 +51,7 @@ class _AuthPageState extends State<AuthPage> {
             const SizedBox(height: 16),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const AuthStudent()));
+                Modular.to.navigate('/home');
               },
               child: Container(
                 padding:

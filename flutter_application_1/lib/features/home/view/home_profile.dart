@@ -21,9 +21,7 @@ class _HomeProfileState extends State<HomeProfile> {
           context,
           MaterialPageRoute(builder: (context) => const HomePage()),
         );
-      } else if (_selectedIndex == 1) {
-
-      }
+      } else if (_selectedIndex == 1) {}
     });
   }
 
@@ -33,17 +31,14 @@ class _HomeProfileState extends State<HomeProfile> {
       appBar: AppBar(
         toolbarHeight: 65,
         backgroundColor: Palette.lightGreen,
-        title: Text('Perfil'),
+        title: const Text('Perfil'),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Palette.whiteColor,
             ),
-            
-            onPressed: () {
-
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -74,7 +69,8 @@ class _HomeProfileState extends State<HomeProfile> {
                   child: Icon(
                     Icons.person,
                     size: 70.0, // Ajuste o tamanho do ícone conforme necessário
-                    color: Palette.lightGreen, // Ajuste a cor do ícone conforme necessário
+                    color: Palette
+                        .lightGreen, // Ajuste a cor do ícone conforme necessário
                   ),
                 ),
               ),
@@ -128,8 +124,10 @@ class _HomeProfileState extends State<HomeProfile> {
                     child: const Center(
                       child: Icon(
                         Icons.phone,
-                        size: 30.0, // Ajuste o tamanho do ícone conforme necessário
-                        color: Palette.lightGreen, // Ajuste a cor do ícone conforme necessário
+                        size:
+                            30.0, // Ajuste o tamanho do ícone conforme necessário
+                        color: Palette
+                            .lightGreen, // Ajuste a cor do ícone conforme necessário
                       ),
                     ),
                   ),
@@ -148,8 +146,10 @@ class _HomeProfileState extends State<HomeProfile> {
                     child: const Center(
                       child: Icon(
                         Icons.mail,
-                        size: 30.0, // Ajuste o tamanho do ícone conforme necessário
-                        color: Palette.lightGreen, // Ajuste a cor do ícone conforme necessário
+                        size:
+                            30.0, // Ajuste o tamanho do ícone conforme necessário
+                        color: Palette
+                            .lightGreen, // Ajuste a cor do ícone conforme necessário
                       ),
                     ),
                   ),
@@ -158,10 +158,6 @@ class _HomeProfileState extends State<HomeProfile> {
             ),
           ),
         ],
-      ),
-      bottomNavigationBar: CustomBottomNav(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
       ),
     );
   }

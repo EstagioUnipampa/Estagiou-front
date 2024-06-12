@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
-import 'package:flutter_application_1/features/home/view/home_profile.dart';
-import 'package:flutter_application_1/features/home/view/internship_details.dart';
 import 'package:flutter_application_1/theme/palette.dart';
 import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
-import 'package:flutter_application_1/features/home/view/home_page_company.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,19 +11,9 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _selectedIndex = 0;
+  
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-      if (_selectedIndex == 2) {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const HomeProfile()),
-        );
-      }
-    });
-  }
+  
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +22,10 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         toolbarHeight: 65,
         backgroundColor: Palette.lightGreen,
-        title: Text('Bem-Vindo,'),
+        title: const Text('Bem-Vindo,'),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Palette.whiteColor,
             ),
@@ -70,24 +57,20 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         Text(
                           '29',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                color: Palette.whiteColor,
-                                fontSize: 24,
-                                fontWeight: FontWeight.bold,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Palette.whiteColor,
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                         ),
                         Text(
                           'Inscrições',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium!
-                              .copyWith(
-                                color: Palette.whiteColor,
-                                fontSize: 16,
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyMedium!.copyWith(
+                                    color: Palette.whiteColor,
+                                    fontSize: 16,
+                                  ),
                         ),
                       ],
                     ),
@@ -106,7 +89,7 @@ class _HomePageState extends State<HomePage> {
           ),
           4.ph,
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -214,12 +197,111 @@ class _HomePageState extends State<HomePage> {
               },
             ),
           ),
+          12.ph,
+          const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text('Vagas disponíveis'),
+                Text('Mais', style: TextStyle(color: Palette.lightGreen),),
+              ],
+            ),
+          ),
+          12.ph,
+          SizedBox(
+            height: size.height * 0.35,
+            child: ListView.separated(
+                itemCount: 4,
+                itemBuilder: (context, index) {
+                  return Container(
+                    padding: const EdgeInsets.all(4),
+                    margin: const EdgeInsets.all(4),
+                    height: size.height * 0.15,
+                    width: size.width * 0.2,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(25),
+                      color: Palette.whiteColor,
+                      border: Border.all(width: 1, color: Palette.darkGreen),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Palette.darkGreen,
+                          offset: Offset(1, 1),
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Palette.lightGreen,
+                          ),
+                          child: Image.asset('assets/logo.png',
+                              height: size.height * 0.1),
+                        ),
+                        8.pw,
+                        Flexible(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              const Flexible(
+                                child: Text('Nome da empresa',
+                                    textAlign: TextAlign.center),
+                              ),
+                              const Flexible(
+                                child: Text('Desenvolvimento de sistemas',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
+                                    textAlign: TextAlign.center),
+                              ),
+                              Flexible(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(
+                                      Icons.attach_money,
+                                      color: Palette.lightGreen,
+                                    ),
+                                    4.pw,
+                                    const Text(
+                                      'R\$280,00',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Flexible(
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    const Icon(Icons.work,
+                                        color: Palette.lightGreen),
+                                    4.pw,
+                                    const Text('São Paulo, Brasil',
+                                        textAlign: TextAlign.center),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) {
+                  return const SizedBox(
+                    height: 4,
+                  );
+                }),
+          )
         ],
       ),
-      bottomNavigationBar: CustomBottomNav(
-        selectedIndex: _selectedIndex,
-        onItemTapped: _onItemTapped,
-      ),
+     
     );
   }
 }

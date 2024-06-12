@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
-import 'package:flutter_application_1/features/home/view/home_profile.dart';
 import 'package:flutter_application_1/theme/palette.dart';
-import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
 
 class HomePageCompany extends StatefulWidget {
   const HomePageCompany({Key? key}) : super(key: key);
@@ -12,20 +10,6 @@ class HomePageCompany extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePageCompany> {
-  int _selectedIndex = 0;
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //     if (_selectedIndex == 2) {
-  //       Navigator.push(
-  //         context,
-  //         MaterialPageRoute(builder: (context) => const HomeProfile()),
-  //       );
-  //     }
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -33,17 +17,14 @@ class _HomePageState extends State<HomePageCompany> {
       appBar: AppBar(
         toolbarHeight: 65,
         backgroundColor: Palette.lightGreen,
-        title: Text('Bem-Vindo,'),
+        title: const Text('Bem-Vindo,'),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search,
               color: Palette.whiteColor,
             ),
-            
-            onPressed: () {
-
-            },
+            onPressed: () {},
           ),
         ],
       ),
@@ -105,7 +86,7 @@ class _HomePageState extends State<HomePageCompany> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
+                const Text(
                   'Vagas Criadas',
                   style: TextStyle(
                     fontSize: 20,
@@ -123,7 +104,7 @@ class _HomePageState extends State<HomePageCompany> {
               ],
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: List.generate(2, (index) {
@@ -190,10 +171,7 @@ class _HomePageState extends State<HomePageCompany> {
           ),
         ],
       ),
-      // bottomNavigationBar: CustomBottomNav(
-      //   selectedIndex: _selectedIndex,
-      //   onItemTapped: _onItemTapped,
-      // ),
+      
     );
   }
 }
