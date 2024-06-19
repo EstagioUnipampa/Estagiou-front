@@ -29,33 +29,30 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      body: const RouterOutlet(), 
+      body: const RouterOutlet(),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home, color: Palette.whiteColor),
+            icon: Icon(Icons.home),
             label: 'Menu',
-            backgroundColor: Palette.lightGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calendar_today),
             label: 'Documentos',
-            backgroundColor: Palette.lightGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.mail_rounded),
             label: 'Inscrições',
-            backgroundColor: Palette.lightGreen,
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'Perfil',
-            backgroundColor: Palette.lightGreen,
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Palette.whiteColor,
+        selectedItemColor: Palette.lightGreen,
+        unselectedItemColor: Palette.lightGreen.withOpacity(0.6),
+        backgroundColor: Palette.whiteColor,
         onTap: _onItemTapped,
       ),
     );

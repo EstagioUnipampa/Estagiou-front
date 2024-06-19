@@ -144,6 +144,7 @@ class _HomePageState extends State<HomePage> {
                   ),
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
                       Flexible(
                         child: Container(
@@ -151,11 +152,12 @@ class _HomePageState extends State<HomePage> {
                             borderRadius: BorderRadius.circular(25),
                             color: Palette.lightGreen,
                           ),
-                          child: Image.asset('assets/logo.png'),
+                          child: Image.asset('assets/companyLogo.png'),
                         ),
                       ),
                       8.pw,
-                      Column(
+                      Column(crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           4.ph,
                           Flexible(
