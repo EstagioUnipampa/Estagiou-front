@@ -19,6 +19,12 @@ class _CustomBottomNavState extends State<CustomBottomNav> {
     '/home/profile',
   ];
 
+  @override
+  void initState() {
+    Modular.to.navigate(_routes[0]);
+    super.initState();
+  }
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;

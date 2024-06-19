@@ -32,15 +32,8 @@ class AvailableVacanciesWidget extends StatelessWidget {
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            margin: const EdgeInsets.all(8),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(25),
-              color: Palette.lightGreen,
-            ),
-            child: Image.asset('assets/logo.png',
-                height: size.height * 0.1),
-          ),
+          Image.asset('assets/companyLogo.png',
+              height: size.height * 0.1),
           8.pw,
           Flexible(
             child: Column(
