@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
+import 'package:flutter_application_1/features/home/view/widgets/available_vacancies.dart';
+import 'package:flutter_application_1/features/home/view/widgets/recommended_vacancies.dart';
 import 'package:flutter_application_1/theme/palette.dart';
 
 class HomePage extends StatefulWidget {
@@ -10,10 +12,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  
-
-  
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -127,74 +125,7 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               itemCount: 2,
               itemBuilder: (context, index) {
-                return Container(
-                  padding: const EdgeInsets.all(4),
-                  margin: const EdgeInsets.all(4),
-                  height: size.height * 0.1,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(25),
-                    color: Palette.whiteColor,
-                    border: Border.all(width: 1, color: Palette.darkGreen),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Palette.darkGreen,
-                        offset: Offset(1, 1),
-                      ),
-                    ],
-                  ),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Flexible(
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Palette.lightGreen,
-                          ),
-                          child: Image.asset('assets/companyLogo.png'),
-                        ),
-                      ),
-                      8.pw,
-                      Column(crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          4.ph,
-                          Flexible(
-                            child: Row(
-                              children: [
-                                const Icon(Icons.work),
-                                4.pw,
-                                const Text('Engenharia de Software'),
-                              ],
-                            ),
-                          ),
-                          Flexible(
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.pin_drop,
-                                  color: Colors.red,
-                                ),
-                                4.pw,
-                                const Text('Humaitá, Amazonas'),
-                              ],
-                            ),
-                          ),
-                          Flexible(
-                            child: Row(
-                              children: [
-                                const Icon(Icons.payment),
-                                4.pw,
-                                const Text('Pagamento em jacaré'),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
+                return RecommendedVacanciesWidget(size: size);
               },
             ),
           ),
@@ -205,7 +136,10 @@ class _HomePageState extends State<HomePage> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text('Vagas disponíveis'),
-                Text('Mais', style: TextStyle(color: Palette.lightGreen),),
+                Text(
+                  'Mais',
+                  style: TextStyle(color: Palette.lightGreen),
+                ),
               ],
             ),
           ),
@@ -215,84 +149,7 @@ class _HomePageState extends State<HomePage> {
             child: ListView.separated(
                 itemCount: 4,
                 itemBuilder: (context, index) {
-                  return Container(
-                    padding: const EdgeInsets.all(4),
-                    margin: const EdgeInsets.all(4),
-                    height: size.height * 0.15,
-                    width: size.width * 0.2,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(25),
-                      color: Palette.whiteColor,
-                      border: Border.all(width: 1, color: Palette.darkGreen),
-                      boxShadow: const [
-                        BoxShadow(
-                          color: Palette.darkGreen,
-                          offset: Offset(1, 1),
-                        ),
-                      ],
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          margin: const EdgeInsets.all(8),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Palette.lightGreen,
-                          ),
-                          child: Image.asset('assets/logo.png',
-                              height: size.height * 0.1),
-                        ),
-                        8.pw,
-                        Flexible(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              const Flexible(
-                                child: Text('Nome da empresa',
-                                    textAlign: TextAlign.center),
-                              ),
-                              const Flexible(
-                                child: Text('Desenvolvimento de sistemas',
-                                    style:
-                                        TextStyle(fontWeight: FontWeight.bold),
-                                    textAlign: TextAlign.center),
-                              ),
-                              Flexible(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const Icon(
-                                      Icons.attach_money,
-                                      color: Palette.lightGreen,
-                                    ),
-                                    4.pw,
-                                    const Text(
-                                      'R\$280,00',
-                                      textAlign: TextAlign.center,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              Flexible(
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  children: [
-                                    const Icon(Icons.work,
-                                        color: Palette.lightGreen),
-                                    4.pw,
-                                    const Text('São Paulo, Brasil',
-                                        textAlign: TextAlign.center),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  );
+                  return AvailableVacanciesWidget(size: size);
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(
@@ -302,7 +159,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-     
     );
   }
 }

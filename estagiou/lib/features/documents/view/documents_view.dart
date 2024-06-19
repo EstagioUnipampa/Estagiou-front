@@ -18,7 +18,9 @@ class _DocumentsViewState extends State<DocumentsView> {
         backgroundColor: Palette.lightGreen,
         
       ),
-      body: const Placeholder(),
+      body: Column(children: [
+        
+      ],),
     );
   }
 }
