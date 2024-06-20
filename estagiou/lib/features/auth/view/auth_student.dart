@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/features/auth/view/auth_page.dart';
 import 'package:flutter_application_1/features/auth/view/components/login_text_field.dart';
 import 'package:flutter_application_1/features/auth/view/register_student.dart';
 import 'package:flutter_application_1/features/home/view/home_page.dart';
