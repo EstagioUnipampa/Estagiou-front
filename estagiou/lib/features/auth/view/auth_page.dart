@@ -51,7 +51,7 @@ class _AuthPageState extends State<AuthPage> {
             const SizedBox(height: 16),
             GestureDetector(
               onTap: () {
-                Modular.to.navigate('/home');
+                Modular.to.navigate('/login');
               },
               child: Container(
                 padding:

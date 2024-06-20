@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/auth/auth_module.dart';
 import 'package:flutter_application_1/features/auth/view/auth_page.dart';
+import 'package:flutter_application_1/features/auth/view/auth_student.dart';
 import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
 import 'package:flutter_application_1/features/documents/view/documents_view.dart';
 import 'package:flutter_application_1/features/home/view/home_page.dart';
@@ -26,10 +27,15 @@ class AppModule extends Module {
   @override
   void routes(r) {
     r.child('/', child: (context) => const AuthPage());
+    r.child(
+      '/login',
+      child: (context) => const AuthStudent(),
+    );
     r.child('/home', child: (context) => const CustomBottomNav(), children: [
       ChildRoute('/homePage', child: (context) => const HomePage()),
       ChildRoute('/documents', child: (context) => const DocumentsView()),
-      ChildRoute('/registrations', child: (context) => const RegistrationsView()),
+      ChildRoute('/registrations',
+          child: (context) => const RegistrationsView()),
       ChildRoute('/profile', child: (context) => const HomeProfile()),
     ]);
     r.module('/auth', module: AuthModule());

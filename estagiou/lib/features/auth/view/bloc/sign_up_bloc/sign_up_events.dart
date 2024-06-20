@@ -5,7 +5,7 @@ abstract class SignUpEvent {}
 class OnSignUpEvent extends SignUpEvent {
   final Aluno alunoDTO;
 
-  OnSignUpEvent(this.alunoDTO);
+  OnSignUpEvent({required this.alunoDTO});
 }
 
 class OnGetAlunosEvent extends SignUpEvent {

@@ -4,7 +4,7 @@ import 'package:flutter_application_1/features/auth/view/components/login_text_f
 import 'package:flutter_application_1/features/auth/view/register_student.dart';
 import 'package:flutter_application_1/features/home/view/home_page.dart';
 import 'package:flutter_application_1/theme/palette.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class AuthStudent extends StatefulWidget {
   const AuthStudent({Key? key}) : super(key: key);
@@ -12,14 +12,6 @@ class AuthStudent extends StatefulWidget {
   @override
   State<AuthStudent> createState() => _AuthStudentState();
 }
-
-const List<String> scopes = <String>[
-  'email',
-  'https://www.googleapis.com/auth/contacts.readonly',
-];
-GoogleSignIn _googleSignIn = GoogleSignIn(
-  scopes: scopes,
-);
 
 class _AuthStudentState extends State<AuthStudent> {
   final TextEditingController _emailController = TextEditingController();
@@ -33,11 +25,7 @@ class _AuthStudentState extends State<AuthStudent> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(
-            onPressed: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const AuthPage()),
-                )),
+        leading: BackButton(onPressed: () => Modular.to.navigate('/')),
         toolbarHeight: 65,
         title: const Text(
           'Estudante',

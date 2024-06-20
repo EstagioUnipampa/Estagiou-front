@@ -100,7 +100,7 @@ class _RegisterStudentState extends State<RegisterStudent> {
         lastName: _lastNameController.text,
         password: _passwordController.text,
       );
-      _signUpBloc.add(OnSignUpEvent(alunoDTO));
+      _signUpBloc.add(OnSignUpEvent(alunoDTO: alunoDTO));
     }
   }
 
@@ -219,12 +219,13 @@ class _RegisterStudentState extends State<RegisterStudent> {
                         onPressed: _register,
                         child: Text(
                           'Cadastrar',
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.w600,
-                                fontFamily: 'Poppins',
-                              ),
+                          style:
+                              Theme.of(context).textTheme.bodyLarge?.copyWith(
+                                    color: Colors.white,
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.w600,
+                                    fontFamily: 'Poppins',
+                                  ),
                         ),
                       ),
                     ),

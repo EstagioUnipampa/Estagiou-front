@@ -3,7 +3,7 @@ import 'package:flutter_application_1/features/auth/view/bloc/sign_up_bloc/sign_
 import 'package:flutter_application_1/shared/bloc/base_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class SignUpBloc extends Bloc<SignUpEvent, BaseState> {
+class SignUpBloc extends Bloc<OnSignUpEvent, BaseState> {
   final UserSignupService _service;
 
   SignUpBloc(this._service) : super(LoadingState()) {
@@ -16,12 +16,5 @@ class SignUpBloc extends Bloc<SignUpEvent, BaseState> {
         emit(ErrorState(e.toString()));
       }
     });
-    on<OnGetAlunosEvent>(
-      (event, emit) async {
-        emit(LoadingState());
-        await _service.getAllAlunos();
-        emit(SuccessState(null));
-      },
-    );
   }
 }
