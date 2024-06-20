@@ -1,5 +1,4 @@
 import 'package:flutter_application_1/features/auth/view/bloc/sign_in_bloc/sign_in_events.dart';
-import 'package:flutter_application_1/features/auth/view/bloc/sign_up_bloc/sign_up_events.dart';
 import 'package:flutter_application_1/shared/bloc/base_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,7 +11,9 @@ class SignInBloc extends Bloc<SignInEvent, BaseState> {
     on<OnSignInEvent>((event, emit) async {
       emit(LoadingState());
       try {
-        _service.login(email: event.email, password: event.password);
+        final response = _service.login(login: event.loginDTO);
+        print(response);
+        emit(SuccessState(response));
       } catch (e) {
         emit(ErrorState(e.toString()));
       }
