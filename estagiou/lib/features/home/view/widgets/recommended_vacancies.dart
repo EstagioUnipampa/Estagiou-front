@@ -91,14 +91,14 @@ class RecommendedVacanciesWidget extends StatelessWidget {
                 child: Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 16.0), // Define a margem à esquerda
                       child: Row(
                         children: [
                           Image.asset(
                             'assets/coins.png',
-                            height: 16,
-                            width: 16, // Tamanho do ícone
+                            height: 24,
+                            width: 24, // Tamanho do ícone
                           ),
                           4.pw, // Espaçamento horizontal entre o ícone e o texto
                           const Text(

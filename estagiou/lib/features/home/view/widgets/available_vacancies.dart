@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
 import 'package:flutter_application_1/theme/palette.dart';
@@ -18,63 +17,69 @@ class AvailableVacanciesWidget extends StatelessWidget {
       margin: const EdgeInsets.all(4),
       height: size.height * 0.15,
       width: size.width * 0.2,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+      decoration: const BoxDecoration(
         color: Palette.whiteColor,
-        border: Border.all(width: 1, color: Palette.darkGreen),
-        boxShadow: const [
-          BoxShadow(
-            color: Palette.darkGreen,
-            offset: Offset(1, 1),
-          ),
-        ],
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Image.asset('assets/companyLogo.png',
-              height: size.height * 0.1),
-          8.pw,
+          Container(
+            margin: const EdgeInsets.only(
+                top: 2, left: 16), // Define o valor da margin-top
+            child: Image.asset('assets/companyLogo.png', height: 55),
+          ),
+          18.pw,
           Flexible(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 const Flexible(
-                  child: Text('Nome da empresa',
-                      textAlign: TextAlign.center),
+                  child: Text('Nome da empresa', textAlign: TextAlign.center),
                 ),
                 const Flexible(
                   child: Text('Desenvolvimento de sistemas',
                       style:
-                          TextStyle(fontWeight: FontWeight.bold),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                       textAlign: TextAlign.center),
                 ),
+                6.ph,
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(
-                        Icons.attach_money,
-                        color: Palette.lightGreen,
+                      Image.asset(
+                        'assets/coins.png',
+                        height: 24,
+                        width: 24, // Tamanho do ícone
                       ),
-                      4.pw,
+                      10.pw,
                       const Text(
                         'R\$280,00',
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w500),
                       ),
                     ],
                   ),
                 ),
+                2.ph,
                 Flexible(
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      const Icon(Icons.work,
-                          color: Palette.lightGreen),
-                      4.pw,
-                      const Text('São Paulo, Brasil',
-                          textAlign: TextAlign.center),
+                      Image.asset(
+                        'assets/work.png',
+                        height: 24,
+                        width: 24, // Tamanho do ícone
+                      ),
+                      10.pw,
+                      const Text(
+                        'São Paulo, Brasil',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w500, fontSize: 14),
+                      ),
                     ],
                   ),
                 ),

@@ -33,65 +33,65 @@ class _HomePageState extends State<HomePage> {
       backgroundColor: Palette.backgroundColor,
       body: ListView(
         children: [
+          20.ph,
           Align(
             alignment: Alignment.centerLeft,
             child: Container(
-              height: size.height * 0.2,
-              width: size.width * 0.45,
-              margin: const EdgeInsets.only(top: 4, left: 4),
+              height: 90,
+              width: double.infinity,
+              margin: const EdgeInsets.only(top: 4, left: 20, right: 20),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
+                borderRadius: BorderRadius.circular(20),
                 shape: BoxShape.rectangle,
-                gradient: const LinearGradient(
-                  colors: [Palette.darkGreen, Palette.lightGreen],
-                ),
+                color: const Color(0xFF1A7924),
               ),
               child: Stack(
                 children: [
-                  Positioned(
-                    top: 12,
-                    left: 12,
+                  const Positioned(
+                    top: 8,
+                    left: 32,
                     child: Column(
+                      crossAxisAlignment:
+                          CrossAxisAlignment.start, // Alinha o texto à esquerda
                       children: [
                         Text(
                           '29',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: Palette.whiteColor,
-                                    fontSize: 24,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                          style: TextStyle(
+                            color: Palette.whiteColor,
+                            fontSize: 34,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         Text(
                           'Inscrições',
-                          style:
-                              Theme.of(context).textTheme.bodyMedium!.copyWith(
-                                    color: Palette.whiteColor,
-                                    fontSize: 16,
-                                  ),
+                          style: TextStyle(
+                              color: Palette.whiteColor, fontSize: 14),
                         ),
                       ],
                     ),
                   ),
                   Positioned(
-                    bottom: -16,
-                    right: -12,
+                    top: 21,
+                    right: 12,
                     child: Image.asset(
                       'assets/confirmed.png',
-                      alignment: Alignment.bottomRight,
+                      height: 50,
+                      alignment: Alignment.centerRight,
                     ),
-                  )
+                  ),
                 ],
               ),
             ),
           ),
-          4.ph,
+          20.ph,
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Vagas recomendadas'),
+                const Text('Vagas recomendadas',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
                 SizedBox(
                   width: 120,
                   height: 10,
@@ -136,10 +136,12 @@ class _HomePageState extends State<HomePage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Vagas disponíveis'),
+                Text('Vagas disponíveis',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
                 Text(
                   'Mais',
-                  style: TextStyle(color: Palette.lightGreen),
+                  style: TextStyle(color: Palette.lightGreen, fontSize: 14),
                 ),
               ],
             ),
@@ -154,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                 },
                 separatorBuilder: (context, index) {
                   return const SizedBox(
-                    height: 4,
+                    height: 16,
                   );
                 }),
           )
