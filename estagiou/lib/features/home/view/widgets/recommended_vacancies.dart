@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/extensions/custom_padding.dart';
 import 'package:flutter_application_1/theme/palette.dart';
@@ -14,16 +13,18 @@ class RecommendedVacanciesWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: 283,
+      height: 200,
       padding: const EdgeInsets.all(4),
       margin: const EdgeInsets.all(4),
-      height: size.height * 0.1,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(25),
+        borderRadius: BorderRadius.circular(20),
         color: Palette.whiteColor,
-        boxShadow: const [
+        boxShadow: [
           BoxShadow(
-            color: Palette.darkGreen,
-            offset: Offset(1, 1),
+            color: Colors.black.withOpacity(0.03), // Cor #000000
+            offset: const Offset(0, 8), // Somente Y com valor 8
+            blurRadius: 2, // Valor de desfoque
           ),
         ],
       ),
@@ -34,10 +35,19 @@ class RecommendedVacanciesWidget extends StatelessWidget {
           Flexible(
             child: Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                color: Palette.lightGreen,
+                  borderRadius: BorderRadius.circular(20),
+                  color: Palette.lightGreen),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(
+                    20), // Aplica o border radius à imagem
+                child: Image.asset(
+                  'assets/companyLogo_recommended.png',
+                  height: 80,
+                  width: 80,
+                  fit: BoxFit
+                      .cover, // Faz a imagem preencher todo o espaço disponível
+                ),
               ),
-              child: Image.asset('assets/companyLogo_recommended.png'),
             ),
           ),
           8.pw,
@@ -51,7 +61,10 @@ class RecommendedVacanciesWidget extends StatelessWidget {
                   children: [
                     Text(
                       'Engenharia de Software',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          fontSize: 13,
+                          fontFamily: "Poppins"),
                     ),
                   ],
                 ),
@@ -59,18 +72,45 @@ class RecommendedVacanciesWidget extends StatelessWidget {
               const Flexible(
                 child: Row(
                   children: [
-                    Text('Humaitá, Amazonas'),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16.0), // Define a margem à esquerda
+                      child: Text(
+                        'Humaitá, Amazonas',
+                        style: TextStyle(
+                          fontWeight: FontWeight.normal,
+                          fontSize: 12,
+                          fontFamily: "Poppins",
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
               Flexible(
                 child: Row(
                   children: [
-                    const Icon(Icons.money),
-                    4.pw,
-                    const Text(
-                      'Não remunerado',
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: 16.0), // Define a margem à esquerda
+                      child: Row(
+                        children: [
+                          Image.asset(
+                            'assets/coins.png',
+                            height: 16,
+                            width: 16, // Tamanho do ícone
+                          ),
+                          4.pw, // Espaçamento horizontal entre o ícone e o texto
+                          const Text(
+                            'Não remunerado',
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              fontFamily: "Poppins",
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
                 ),

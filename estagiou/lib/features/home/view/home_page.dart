@@ -30,6 +30,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      backgroundColor: Palette.backgroundColor,
       body: ListView(
         children: [
           Align(
