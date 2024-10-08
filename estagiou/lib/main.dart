@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/features/auth/auth_module.dart';
+import 'package:flutter_application_1/features/auth/view/auth_company.dart';
 import 'package:flutter_application_1/features/auth/view/auth_page.dart';
 import 'package:flutter_application_1/features/auth/view/auth_student.dart';
 import 'package:flutter_application_1/features/auth/view/components/custom_bottom_nav.dart';
@@ -31,6 +32,7 @@ class AppModule extends Module {
       '/login',
       child: (context) => const AuthStudent(),
     );
+    r.child('/company-login', child: (context) => const AuthCompany());
     r.child('/home', child: (context) => const CustomBottomNav(), children: [
       ChildRoute('/homePage', child: (context) => const HomePage()),
       ChildRoute('/documents', child: (context) => const DocumentsView()),
@@ -50,6 +52,8 @@ class MainApp extends StatelessWidget {
     return MaterialApp.router(
       routerDelegate: Modular.routerDelegate,
       routeInformationParser: Modular.routeInformationParser,
+      backButtonDispatcher:
+          RootBackButtonDispatcher(), // Habilita o botão de voltar
       theme: ThemeData(
         fontFamily: 'Poppins',
         elevatedButtonTheme: ElevatedButtonThemeData(
